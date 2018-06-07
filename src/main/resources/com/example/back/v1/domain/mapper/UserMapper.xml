@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.back.v1.domain.mapper.UserMapper">
+
+    <resultMap id="resultMap" type="com.example.back.v1.domain.model.User">
+        <id column="tenant_id" jdbcType="VARCHAR" property="tenantId" />
+        <result column="sub_iss_hash" jdbcType="VARCHAR" property="subIssHash" />
+        <result column="user_id" jdbcType="VARCHAR" property="userId" />
+        <!--<result column="last_login" jdbcType="DATE" property="lastLogin" />-->
+        <result column="version" jdbcType="INTEGER" property="version" />
+        <!--<result column="last_update" jdbcType="DATE " property="lastUpdate" />-->
+    </resultMap>
+    <select id="getUser" parameterType="String" resultMap="resultMap">
+        SELECT * FROM test.t_user1 WHERE tenant_id = #{tenantId}
+    </select>
+    <select id="createUser" parameterType="String" resultMap="resultMap">
+        INSERT INTO test.t_user1 (tenant_id, sub_iss_hash, user_id) VALUES (#{tenantId}, #{subIssHash}, #{userId})
+    </select>
+    <select id="updateUser" parameterType="String" resultMap="resultMap">
+        UPDATE test.t_user1 SET sub_iss_hash=#{subIssHash}, user_id=#{userId} WHERE tenant_id=#{tenantId}
+    </select>
+    <select id="deleteUser" parameterType="String" resultMap="resultMap">
+        DELETE FROM test.t_user1 WHERE tenant_id = #{tenantId}
+    </select>
+</mapper>

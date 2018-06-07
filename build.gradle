@@ -1,0 +1,52 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+plugins {
+	id "org.flywaydb.flyway" version "5.1.0"
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	// JDBC接続先定義
+	databaseJdbcUrl = databaseJdbcUrl
+	databaseJdbcUser = databaseJdbcUser
+	databaseJdbcPass = databaseJdbcPass
+	databaseJdbcSchema = databaseJdbcSchema
+}
+
+flyway {
+	url = "${databaseJdbcUrl}"
+	user = "${databaseJdbcUser}"
+	password = "${databaseJdbcPass}"
+	schemas = ["${databaseJdbcSchema}"]
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2')
+	runtime('org.springframework.boot:spring-boot-devtools')
+	runtime('mysql:mysql-connector-java:5.1.31')
+	compileOnly('org.projectlombok:lombok')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
