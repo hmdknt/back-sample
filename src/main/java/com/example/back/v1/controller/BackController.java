@@ -24,8 +24,6 @@ public class BackController {
         return new ResponseEntity<>(userServiceImpl.getUser(tenantId),HttpStatus.OK);
     }
 
-
-
     @PostMapping
     public ResponseEntity createUser(@RequestBody User user){
         return new ResponseEntity<>(userServiceImpl.createUser(user),HttpStatus.OK);
