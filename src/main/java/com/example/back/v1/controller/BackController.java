@@ -26,17 +26,17 @@ public class BackController {
 
     @PostMapping
     public ResponseEntity createUser(@RequestBody User user){
-        return new ResponseEntity<>(userServiceImpl.createUser(user),HttpStatus.OK);
+        return new ResponseEntity<>(userServiceImpl.createUser(user),HttpStatus.CREATED);
     }
 
     @PutMapping
     public ResponseEntity updateUser(@RequestBody User user){
-        return new ResponseEntity<>(userServiceImpl.updateUser(user),HttpStatus.OK);
+        return new ResponseEntity<>(userServiceImpl.updateUser(user),HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping
     public ResponseEntity deleteUser(@RequestParam String tenantId) {
-        return new ResponseEntity<>(userServiceImpl.deleteUser(tenantId),HttpStatus.OK);
+        return new ResponseEntity<>(userServiceImpl.deleteUser(tenantId),HttpStatus.NO_CONTENT  );
     }
 
 
