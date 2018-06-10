@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
 
 
 @RestController
@@ -20,22 +21,22 @@ public class BackController {
     private UserServiceImpl userServiceImpl;
 
     @GetMapping
-    public ResponseEntity getUser(@RequestParam String tenantId){
+    public ResponseEntity<User> getUser(@RequestParam String tenantId){
         return new ResponseEntity<>(userServiceImpl.getUser(tenantId),HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity createUser(@RequestBody User user){
+    public ResponseEntity<User> createUser(@RequestBody User user){
         return new ResponseEntity<>(userServiceImpl.createUser(user),HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity updateUser(@RequestBody User user){
+    public ResponseEntity<User> updateUser(@RequestBody User user){
         return new ResponseEntity<>(userServiceImpl.updateUser(user),HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping
-    public ResponseEntity deleteUser(@RequestParam String tenantId) {
+    public ResponseEntity<User> deleteUser(@RequestParam String tenantId) {
         return new ResponseEntity<>(userServiceImpl.deleteUser(tenantId),HttpStatus.NO_CONTENT  );
     }
 
