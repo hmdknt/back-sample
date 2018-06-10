@@ -29,16 +29,16 @@ repositories {
 
 ext {
 	// JDBC接続先定義
-	databaseJdbcUrl = databaseJdbcUrl
-	databaseJdbcUser = databaseJdbcUser
-	databaseJdbcPass = databaseJdbcPass
-	databaseJdbcSchema = databaseJdbcSchema
+	databaseJdbcUrl = 'jdbc:mysql://127.0.0.1:3306?useSSL=false'
+	databaseJdbcUser = 'root'
+//	databaseJdbcPass =
+	databaseJdbcSchema = 'test'
 }
 
 flyway {
 	url = "${databaseJdbcUrl}"
 	user = "${databaseJdbcUser}"
-	password = "${databaseJdbcPass}"
+//	password = "${databaseJdbcPass}"
 	schemas = ["${databaseJdbcSchema}"]
 }
 

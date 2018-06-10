@@ -11,15 +11,15 @@
         <!--<result column="last_update" jdbcType="DATE " property="lastUpdate" />-->
     </resultMap>
     <select id="getUser" parameterType="String" resultMap="resultMap">
-        SELECT * FROM test.t_user1 WHERE tenant_id = #{tenantId}
+        SELECT * FROM test.t_user WHERE tenant_id = #{tenantId}
     </select>
     <select id="createUser" parameterType="String" resultMap="resultMap">
-        INSERT INTO test.t_user1 (tenant_id, sub_iss_hash, user_id) VALUES (#{tenantId}, #{subIssHash}, #{userId})
+        INSERT INTO test.t_user (tenant_id, sub_iss_hash, user_id) VALUES (#{tenantId}, #{subIssHash}, #{userId})
     </select>
     <select id="updateUser" parameterType="String" resultMap="resultMap">
-        UPDATE test.t_user1 SET sub_iss_hash=#{subIssHash}, user_id=#{userId} WHERE tenant_id=#{tenantId}
+        UPDATE test.t_user SET sub_iss_hash=#{subIssHash}, user_id=#{userId} WHERE tenant_id=#{tenantId}
     </select>
     <select id="deleteUser" parameterType="String" resultMap="resultMap">
-        DELETE FROM test.t_user1 WHERE tenant_id = #{tenantId}
+        DELETE FROM test.t_user WHERE tenant_id = #{tenantId}
     </select>
 </mapper>

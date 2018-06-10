@@ -8,27 +8,27 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema dag
+-- Schema test
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema dag
+-- Schema test
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `test` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
-USE `dag` ;
+USE `test` ;
 
 -- -----------------------------------------------------
--- Table `dag`.`t_user`
+-- Table `test`.`t_user`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `test`.`t_user` ;
 
-CREATE TABLE IF NOT EXISTS `dag`.`t_user` (
-  `tenant_id` VARCHAR(36) NOT NULL COMMENT 'テナントID（キャラクタがテナントに対してNの関係性だったとしてもテナントに対して個社IdPが紐付くのであれば問題ない）',
+CREATE TABLE IF NOT EXISTS `test`.`t_user` (
+  `tenant_id` VARCHAR(36) NOT NULL ,
   `sub_iss_hash` VARCHAR(100) NOT NULL,
   `user_id` VARCHAR(36) NOT NULL COMMENT 'ユーザーID',
-  `last_login` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `version` BIGINT UNSIGNED NOT NULL DEFAULT 0,
-  `last_update` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--  `last_login` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--  `version` BIGINT UNSIGNED NOT NULL DEFAULT 0,
+--  `last_update` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`tenant_id`),
   INDEX `i1_t_user` (`user_id` ASC))
 ENGINE = InnoDB;

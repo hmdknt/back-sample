@@ -5,6 +5,7 @@ import com.example.back.v1.domain.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
@@ -12,30 +13,32 @@ import java.util.Date;
 
 
 @RestController
+@RequestMapping("user")
 public class BackController {
 
     @Autowired
     private UserServiceImpl userServiceImpl;
 
-    @RequestMapping (value = "user", method = RequestMethod.GET)
-    public User getUser(String tenantId){
-        User user = userServiceImpl.getUser(tenantId);
-        return user;
+    @GetMapping
+    public ResponseEntity getUser(@RequestParam String tenantId){
+        return new ResponseEntity<>(userServiceImpl.getUser(tenantId),HttpStatus.OK);
     }
 
-    @RequestMapping(value = "user", method = RequestMethod.POST)
-    public void createUser(@RequestBody User user){
-        userServiceImpl.createUser(user);
+
+
+    @PostMapping
+    public ResponseEntity createUser(@RequestBody User user){
+        return new ResponseEntity<>(userServiceImpl.createUser(user),HttpStatus.OK);
     }
 
-    @RequestMapping(value = "user", method = RequestMethod.PUT)
-    public void updateUser(@RequestBody User user){
-        userServiceImpl.updateUser(user);
+    @PutMapping
+    public ResponseEntity updateUser(@RequestBody User user){
+        return new ResponseEntity<>(userServiceImpl.updateUser(user),HttpStatus.OK);
     }
 
-    @RequestMapping(value = "user", method = RequestMethod.DELETE)
-    public void deleteUser(String tenantId){
-        userServiceImpl.deleteUser(tenantId);
+    @DeleteMapping
+    public ResponseEntity deleteUser(@RequestParam String tenantId) {
+        return new ResponseEntity<>(userServiceImpl.deleteUser(tenantId),HttpStatus.OK);
     }
 
 
